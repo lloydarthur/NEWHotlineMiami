@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{79EB87CD-350A-E32B-E6E4-0ED93D1BED1A}") = "HotlineMiami-master", "Assembly-CSharp.csproj", "{D29AA35C-6782-582D-7064-FD5173514009}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D29AA35C-6782-582D-7064-FD5173514009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D29AA35C-6782-582D-7064-FD5173514009}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D29AA35C-6782-582D-7064-FD5173514009}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D29AA35C-6782-582D-7064-FD5173514009}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
