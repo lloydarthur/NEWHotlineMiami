@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6BAECC53-A4D6-ADC1-207D-599E02A5D01D}</ProjectGuid>
+    <ProjectGuid>{9FF4ED6F-2C28-3F5D-57C8-1E3DAE6ABD6F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\AI\Grunt\EnemieBullet.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\GruntGun.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\GruntMovement.cs" />
+     <Compile Include="Assets\Scripts\AI\Scout\ScoutMovement.cs" />
      <Compile Include="Assets\Scripts\Instruction\Controls.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\BulletSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\PlayerCollision.cs" />
