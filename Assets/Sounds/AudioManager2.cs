@@ -4,9 +4,21 @@ using System.Collections.Generic;
 
 public class AudioManager2 : MonoBehaviour 
 {
-	[SerializeField] private AudioClip death = null;
-	[SerializeField] private AudioClip Firebullets = null;
 
+	//  hand gun sounds 
+	[SerializeField] private AudioClip HandgunSound1 = null;
+	[SerializeField] private AudioClip HandgunSound2 = null;
+	[SerializeField] private AudioClip HandgunSound3 = null;
+
+	//  Shot gun sounds 
+	[SerializeField] private AudioClip ShotgunSound1 = null;
+	[SerializeField] private AudioClip ShotgunSound2 = null;
+	[SerializeField] private AudioClip ShotgunSound3 = null;
+
+	//  Shot gun sounds 
+	[SerializeField] private AudioClip RifeSound1 = null;
+	[SerializeField] private AudioClip RifeSound2 = null;
+	[SerializeField] private AudioClip RifeSound3 = null;
 
 	private List<AudioSource> sources = new List<AudioSource>();
 
@@ -43,15 +55,61 @@ public class AudioManager2 : MonoBehaviour
 	#region Play Methods
 
 
-	public void PlayDeadClip ()
+	public void PlayShotGunclip1 ()
 	{
-		PlaySound(this.death);
+		
+		PlaySound(this.ShotgunSound1 );
 	}
 
-	public void PlayfireClip1 ()
+	public void PlayShotGunclip2 ()
 	{
-		PlaySound(this.Firebullets);
+
+		PlaySound(this.ShotgunSound2 );
 	}
+
+	public void PlayShotGunclip3 ()
+	{
+
+		PlaySound(this.ShotgunSound3 );
+	}
+	public void PlayHandGunclip1 ()
+	{
+
+		PlaySound(this.HandgunSound1 );
+	}
+
+	public void PlayHandGunclip2 ()
+	{
+
+		PlaySound(this.HandgunSound2 );
+	}
+
+	public void PlayHandGunclip3 ()
+	{
+
+		PlaySound(this.HandgunSound3 );
+	}
+
+	public void PlayRifeclip1 ()
+	{
+
+		PlaySound(this.RifeSound1 );
+	}
+
+	public void PlayRifeclip2 ()
+	{
+
+		PlaySound(this.RifeSound2 );
+	}
+
+	public void PlayRifeclip3 ()
+	{
+
+		PlaySound(this.RifeSound3 );
+	}
+
+
+
 
 	private void PlaySound (AudioClip clip)
 	{

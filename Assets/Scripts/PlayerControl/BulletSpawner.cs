@@ -9,8 +9,26 @@ public class BulletSpawner: MonoBehaviour {
 
 	[SerializeField] private GameObject projectilePrefab = null;
 	[SerializeField] private GameObject ShotGB = null;
+	[SerializeField] private GameObject SFXmng1 = null;
 	[SerializeField] private GameObject RifeB = null;
 	public GameObject[] Spawnpoints = null;
+
+	private float GunThreshold;
+
+	public float ChangeOfRifesound1;
+	public float ChangeOfRifesound2;
+	public float ChangeOfRifesound3;
+
+
+	public float ChangeOfShotgunsound1;
+	public float ChangeOfShotgunsound2;
+	public float ChangeOfShotgunsound3;
+
+
+	public float ChangeOfHandgunsound1;
+	public float ChangeOfHandgunsound2;
+	public float ChangeOfHandgunsound3;
+
 	// Use this for initialization
 
 	void Start () 
@@ -42,7 +60,7 @@ public class BulletSpawner: MonoBehaviour {
 		}
 
 
-
+		GunThreshold = Random.Range (0f, 100.0f);
 	}
 
 
@@ -53,6 +71,24 @@ public class BulletSpawner: MonoBehaviour {
 			GameObject projectile1 = Instantiate(this.projectilePrefab) as GameObject;
 			projectile1.transform.position = Spawnpoints[0].transform.position;
 			projectile1.transform.rotation =  Spawnpoints[0].transform.rotation;
+
+			//Debug.Log ("randomHandGun:"+ GunThreshold);
+
+			if (GunThreshold < ChangeOfHandgunsound1)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayHandGunclip1 ();
+				//Debug.Log ("just played PlayHandGunclip1"); 
+			}
+			else if (GunThreshold < ChangeOfHandgunsound2)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayHandGunclip2 ();
+				//Debug.Log ("just played PlayHandGunclip2"); 
+			}
+			else if (GunThreshold < ChangeOfHandgunsound3)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayHandGunclip3 ();
+				//Debug.Log ("just played PlayHandGunclip3"); 
+		    }
 		}
 	}
 	public void RifeShoot ()
@@ -62,6 +98,23 @@ public class BulletSpawner: MonoBehaviour {
 			GameObject projectile2 = Instantiate(this.RifeB) as GameObject;
 			projectile2.transform.position = Spawnpoints[0].transform.position;
 			projectile2.transform.rotation =  Spawnpoints[0].transform.rotation;
+
+			if (GunThreshold < ChangeOfRifesound1)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayRifeclip1 ();
+				Debug.Log ("just played PlayRifeclip1"); 
+			}
+			else if (GunThreshold < ChangeOfRifesound2)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayRifeclip2 ();
+				Debug.Log ("just played PlayRifeclip2"); 
+			}
+			else if (GunThreshold < ChangeOfRifesound3)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayRifeclip3 ();
+				Debug.Log ("just played PlayRifeclip3"); 
+			}
+
 		}
 	}
 
@@ -82,6 +135,23 @@ public class BulletSpawner: MonoBehaviour {
 			GameObject projectile6 = Instantiate(this.ShotGB ) as GameObject;
 			projectile6.transform.position = Spawnpoints [3].transform.position;//this.gameObject.transform.position;
 			projectile6 .transform.rotation =  Spawnpoints[3].transform.rotation;
+			//Debug.Log ("randomShotGun:"+ GunThreshold); 
+
+			if (GunThreshold < ChangeOfShotgunsound1)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayShotGunclip1 ();
+				//Debug.Log ("just played PlayShotGunclip1"); 
+			}
+			else if (GunThreshold < ChangeOfShotgunsound2)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayShotGunclip2 ();
+				//Debug.Log ("just played PlayShotGunclip2"); 
+			}
+			else if (GunThreshold < ChangeOfShotgunsound3)
+			{
+				SFXmng1.GetComponent<AudioManager2> ().PlayShotGunclip3 ();
+				//Debug.Log ("just played PlayShotGunclip3"); 
+			}
 		}
 	}
 }
