@@ -31,20 +31,20 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 
-		/*if (Input.GetKey (KeyCode.A)) 
+		if (Input.GetKey (KeyCode.A)) 
 		{
 			transform.Translate (Vector2.left* PlayerMovementspeed * Time.deltaTime);
-		}*/
+		}
 
 		if (Input.GetKey (KeyCode.S)) 
 		{
 			transform.Translate (Vector2.down * PlayerMovementspeed* Time.deltaTime);
 		}
 
-		/*if (Input.GetKey (KeyCode.D)) 
+		if (Input.GetKey (KeyCode.D)) 
 		{
 			transform.Translate ( Vector2.right* PlayerMovementspeed * Time.deltaTime);
-		}*/
+		}
 
 
 	/*	Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
