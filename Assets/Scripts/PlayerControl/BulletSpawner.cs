@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BulletSpawner: MonoBehaviour {
 
+	public GameObject Gamemgn=null;
+
 	public bool ShotGunisActive=false;
 	public bool HandGunisActive=false; 
 	public bool AssaultRifleisActive= true; 
@@ -15,19 +17,19 @@ public class BulletSpawner: MonoBehaviour {
 
 	private float GunThreshold;
 
-	public float ChangeOfRifesound1;
-	public float ChangeOfRifesound2;
-	public float ChangeOfRifesound3;
+	public float ChanceOfRifesound1;
+	public float ChanceOfRifesound2;
+	public float ChanceOfRifesound3;
 
 
-	public float ChangeOfShotgunsound1;
-	public float ChangeOfShotgunsound2;
-	public float ChangeOfShotgunsound3;
+	public float ChanceOfShotgunsound1;
+	public float ChanceOfShotgunsound2;
+	public float ChanceOfShotgunsound3;
 
 
-	public float ChangeOfHandgunsound1;
-	public float ChangeOfHandgunsound2;
-	public float ChangeOfHandgunsound3;
+	public float ChanceOfHandgunsound1;
+	public float ChanceOfHandgunsound2;
+	public float ChanceOfHandgunsound3;
 
 	// Use this for initialization
 
@@ -52,7 +54,10 @@ public class BulletSpawner: MonoBehaviour {
 		}
 		if (ShotGunisActive == true && HandGunisActive == false && AssaultRifleisActive== false )
 		{
+			if (Gamemgn.GetComponent<GameManager> ().PlayerAmmo >0)
+			{
 			ShotGunShoot ();
+			}
 		}
 		if (ShotGunisActive == false && HandGunisActive == false && AssaultRifleisActive== true)
 		{
@@ -74,21 +79,23 @@ public class BulletSpawner: MonoBehaviour {
 
 			//Debug.Log ("randomHandGun:"+ GunThreshold);
 
-			if (GunThreshold < ChangeOfHandgunsound1)
+			if (GunThreshold < ChanceOfHandgunsound1)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayHandGunclip1 ();
 				//Debug.Log ("just played PlayHandGunclip1"); 
 			}
-			else if (GunThreshold < ChangeOfHandgunsound2)
+			else if (GunThreshold < ChanceOfHandgunsound2)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayHandGunclip2 ();
 				//Debug.Log ("just played PlayHandGunclip2"); 
 			}
-			else if (GunThreshold < ChangeOfHandgunsound3)
+			else if (GunThreshold < ChanceOfHandgunsound3)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayHandGunclip3 ();
 				//Debug.Log ("just played PlayHandGunclip3"); 
 		    }
+
+
 		}
 	}
 	public void RifeShoot ()
@@ -99,17 +106,17 @@ public class BulletSpawner: MonoBehaviour {
 			projectile2.transform.position = Spawnpoints[0].transform.position;
 			projectile2.transform.rotation =  Spawnpoints[0].transform.rotation;
 
-			if (GunThreshold < ChangeOfRifesound1)
+			if (GunThreshold < ChanceOfRifesound1)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayRifeclip1 ();
 				Debug.Log ("just played PlayRifeclip1"); 
 			}
-			else if (GunThreshold < ChangeOfRifesound2)
+			else if (GunThreshold < ChanceOfRifesound2)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayRifeclip2 ();
 				Debug.Log ("just played PlayRifeclip2"); 
 			}
-			else if (GunThreshold < ChangeOfRifesound3)
+			else if (GunThreshold < ChanceOfRifesound3)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayRifeclip3 ();
 				Debug.Log ("just played PlayRifeclip3"); 
@@ -137,21 +144,22 @@ public class BulletSpawner: MonoBehaviour {
 			projectile6 .transform.rotation =  Spawnpoints[3].transform.rotation;
 			//Debug.Log ("randomShotGun:"+ GunThreshold); 
 
-			if (GunThreshold < ChangeOfShotgunsound1)
+			if (GunThreshold < ChanceOfShotgunsound1)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayShotGunclip1 ();
 				//Debug.Log ("just played PlayShotGunclip1"); 
 			}
-			else if (GunThreshold < ChangeOfShotgunsound2)
+			else if (GunThreshold < ChanceOfShotgunsound2)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayShotGunclip2 ();
 				//Debug.Log ("just played PlayShotGunclip2"); 
 			}
-			else if (GunThreshold < ChangeOfShotgunsound3)
+			else if (GunThreshold < ChanceOfShotgunsound3)
 			{
 				SFXmng1.GetComponent<AudioManager2> ().PlayShotGunclip3 ();
 				//Debug.Log ("just played PlayShotGunclip3"); 
 			}
+			Gamemgn.GetComponent<GameManager> ().DecreasePlayerAmmon ();
 		}
 	}
 }

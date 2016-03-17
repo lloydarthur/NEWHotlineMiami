@@ -83,4 +83,10 @@ public class GameManager : MonoBehaviour {
         PlayerStartPostion = Player.transform.position;
         PlayerAmmo = playerStartammo;
     }
+
+
+	public void DecreasePlayerAmmon ()
+	{
+		PlayerAmmo -= 1;
+	}
 }
