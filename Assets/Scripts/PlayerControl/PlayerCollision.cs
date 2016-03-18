@@ -7,6 +7,7 @@ public class PlayerCollision : MonoBehaviour {
 
 	//Declarations
 	public GameObject player;
+	public GameObject BulletSpawer = null;
 	public Rigidbody2D riflePrefab, pistolPrefab, shotgunPrefab;
 	public SpriteRenderer render, levelindicator;
 	public Sprite playerPistolSprite, playerShotgunSprite, playerRifleSprite;
@@ -123,6 +124,7 @@ public class PlayerCollision : MonoBehaviour {
 					BulletSpawner.GetComponent<BulletSpawner>().ShotGunisActive= false;
 					BulletSpawner.GetComponent<BulletSpawner>().HandGunisActive= true;
 					BulletSpawner.GetComponent<BulletSpawner> ().AssaultRifleisActive = false;
+
 				}
 			}
 		}

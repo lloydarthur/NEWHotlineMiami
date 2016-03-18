@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour {
    
     public int PlayerLives;
     public int PlayerScore;
-    public int PlayerAmmo;
+	public int RifeAmmon;
+	public int ShotGunAmmon;
+	public int HandGunAmmon;
+    //public int PlayerAmmo;
     public int PlayerHealth;
-    public int playerStartammo;
+    public int[] playerStartammo;
     public GameObject Player=null;
-
+	public GameObject BulletSpawerConponet=null;
     public Vector3 PlayerStartPostion;
 
     private static GameManager instance;
@@ -35,7 +38,10 @@ public class GameManager : MonoBehaviour {
         }
         intializeComponents();
         PlayerStartPostion = Player.transform.position;
-        PlayerAmmo = playerStartammo;
+       // PlayerAmmo = playerStartammo;
+		HandGunAmmon = playerStartammo [0];
+		ShotGunAmmon = playerStartammo [1];
+		RifeAmmon = playerStartammo [2];
     }
 
     void FixedUpdate()
@@ -75,18 +81,44 @@ public class GameManager : MonoBehaviour {
     void textUpdater() {
         Life_text.text = "LIVES: " + PlayerLives;
         Score_text.text = "SCORE: " + PlayerScore;
-        Ammo_text.text = "AMMO: "+ PlayerAmmo;
+
+
+
+		if (BulletSpawerConponet.GetComponent<BulletSpawner>().HandGunisActive== true)
+		{
+			Ammo_text.text = "AMMO: "+ /*PlayerAmmo*/ HandGunAmmon ;
+		}
+		else if (BulletSpawerConponet.GetComponent<BulletSpawner>().ShotGunisActive== true)
+		{
+			Ammo_text.text = "AMMO: "+ /*PlayerAmmo*/ ShotGunAmmon ;
+		}
+		else if (BulletSpawerConponet.GetComponent<BulletSpawner>().AssaultRifleisActive== true)
+		{
+			Ammo_text.text = "AMMO: "+ /*PlayerAmmo*/ RifeAmmon  ;
+		}
     }
     
     public void resetPlayer() {
         Player.transform.position = PlayerStartPostion;
         PlayerStartPostion = Player.transform.position;
-        PlayerAmmo = playerStartammo;
+      //  PlayerAmmo = playerStartammo;
     }
 
 
 	public void DecreasePlayerAmmon ()
 	{
-		PlayerAmmo -= 1;
+		if (BulletSpawerConponet.GetComponent<BulletSpawner>().HandGunisActive== true)
+		{
+			 HandGunAmmon-= 1 ;
+		}
+		else if (BulletSpawerConponet.GetComponent<BulletSpawner>().ShotGunisActive== true)
+		{
+			ShotGunAmmon-= 2 ;
+		}
+		else if (BulletSpawerConponet.GetComponent<BulletSpawner>().AssaultRifleisActive== true)
+		{
+			RifeAmmon-=1  ;
+		}
+	
 	}
 }

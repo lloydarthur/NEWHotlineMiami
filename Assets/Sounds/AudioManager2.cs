@@ -6,6 +6,9 @@ public class AudioManager2 : MonoBehaviour
 {
 
 	//  hand gun sounds 
+
+
+
 	[SerializeField] private AudioClip HandgunSound1 = null;
 	[SerializeField] private AudioClip HandgunSound2 = null;
 	[SerializeField] private AudioClip HandgunSound3 = null;
