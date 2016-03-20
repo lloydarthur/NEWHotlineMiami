@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerCollision : MonoBehaviour {
 
 	//Declarations
+	public GameObject Gamgmnger=null;
 	public GameObject player;
 	public GameObject BulletSpawer = null;
 	public Rigidbody2D riflePrefab, pistolPrefab, shotgunPrefab;
@@ -109,6 +110,14 @@ public class PlayerCollision : MonoBehaviour {
 				StartCoroutine (Level2_3BackTrigger());
 
 			}
+
+			if (c.tag == "ShotGunAmmo") {
+				Debug.Log("AMMo");
+				Destroy (c.gameObject);
+				Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon = Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon+16; 
+			}
+
+
 		}
 
 		if (c.tag == "Handgun" && currentGun != "pistol")  {

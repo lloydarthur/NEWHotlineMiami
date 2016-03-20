@@ -24,6 +24,11 @@ public class GameManager : MonoBehaviour {
     public Text Score_text=null;
     public Text Life_text=null;
     public Text Ammo_text=null;
+	public Text CurenntWeapon_text=null;
+	public Image ShotGunGui = null;
+	public Image HandGunGui = null;
+	public Image RifeGui = null;
+
     #endregion
 
     void Awake() {
@@ -71,11 +76,29 @@ public class GameManager : MonoBehaviour {
 
         }
 
-        if(Ammo_text==null) {
-            Ammo_text = GameObject.FindGameObjectWithTag("Ammo").GetComponent<Text>();
+		if(CurenntWeapon_text==null) {
+			CurenntWeapon_text = GameObject.FindGameObjectWithTag("CurenntWeapon").GetComponent<Text>();
         } else {
 
         }
+
+		if(ShotGunGui==null) {
+			ShotGunGui = GameObject.FindGameObjectWithTag("ShotGunGui").GetComponent<Image>();
+		} else {
+
+		}
+
+		if(HandGunGui==null) {
+			HandGunGui= GameObject.FindGameObjectWithTag("HandGunGui").GetComponent<Image>();
+		} else {
+
+		}
+
+		if(RifeGui==null) {
+			RifeGui = GameObject.FindGameObjectWithTag("RifeGui").GetComponent<Image>();
+		} else {
+
+		}
     }
 
     void textUpdater() {
@@ -86,14 +109,26 @@ public class GameManager : MonoBehaviour {
 
 		if (BulletSpawerConponet.GetComponent<BulletSpawner>().HandGunisActive== true)
 		{
+			CurenntWeapon_text.text = "HandGun";
+			HandGunGui.enabled = true;
+			ShotGunGui.enabled = false;
+			RifeGui.enabled = false;
 			Ammo_text.text = "AMMO: "+ /*PlayerAmmo*/ HandGunAmmon ;
 		}
 		else if (BulletSpawerConponet.GetComponent<BulletSpawner>().ShotGunisActive== true)
 		{
+			CurenntWeapon_text.text = "ShotGun";
+			HandGunGui.enabled = false;
+			ShotGunGui.enabled = true;
+			RifeGui.enabled = false;
 			Ammo_text.text = "AMMO: "+ /*PlayerAmmo*/ ShotGunAmmon ;
 		}
 		else if (BulletSpawerConponet.GetComponent<BulletSpawner>().AssaultRifleisActive== true)
 		{
+			CurenntWeapon_text.text = "Rife";
+			HandGunGui.enabled = false;
+			ShotGunGui.enabled = false;
+			RifeGui.enabled = true;
 			Ammo_text.text = "AMMO: "+ /*PlayerAmmo*/ RifeAmmon  ;
 		}
     }
