@@ -51,7 +51,6 @@
      <Compile Include="Assets\Scripts\Instruction\Controls.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\BulletSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\PlayerCollision.cs" />
-     <Compile Include="Assets\Scripts\PlayerControl\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\ProjectileMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\SmoothCamera2D.cs" />

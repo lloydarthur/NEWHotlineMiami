@@ -83,6 +83,10 @@ public class PlayerCollision : MonoBehaviour {
 		if (c.tag == "Level1EndTrigger") {
 			levelindicator.enabled = true;
 		}
+		if (c.tag == "test") {
+			Gamgmnger.GetComponent<GameManager> ().DecreasePlayerHealth (5);
+			Debug.Log ("Test it work");
+		}
 	}
 
 	//When triggers stay collided
@@ -111,11 +115,11 @@ public class PlayerCollision : MonoBehaviour {
 
 			}
 
-			if (c.tag == "ShotGunAmmo") {
+			/*if (c.tag == "ShotGunAmmo") {
 				Debug.Log("AMMo");
 				Destroy (c.gameObject);
 				Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon = Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon+16; 
-			}
+			}*/
 
 
 		}
@@ -176,6 +180,8 @@ public class PlayerCollision : MonoBehaviour {
 				}
 			}
 		}
+
+
 		if (Input.GetKeyUp(KeyCode.E)) {
 			gunPickedUpConfirm = false;
 		}

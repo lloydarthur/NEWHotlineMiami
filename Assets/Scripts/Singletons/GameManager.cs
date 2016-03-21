@@ -24,10 +24,13 @@ public class GameManager : MonoBehaviour {
     public Text Score_text=null;
     public Text Life_text=null;
     public Text Ammo_text=null;
+	public Text healthbar_text = null;
 	public Text CurenntWeapon_text=null;
 	public Image ShotGunGui = null;
 	public Image HandGunGui = null;
 	public Image RifeGui = null;
+	public Image healthbarfilerGui = null;
+
 
     #endregion
 
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour {
 		HandGunAmmon = playerStartammo [0];
 		ShotGunAmmon = playerStartammo [1];
 		RifeAmmon = playerStartammo [2];
+		PlayerHealth = 100;
     }
 
     void FixedUpdate()
@@ -76,12 +80,18 @@ public class GameManager : MonoBehaviour {
 
         }
 
+
 		if(CurenntWeapon_text==null) {
 			CurenntWeapon_text = GameObject.FindGameObjectWithTag("CurenntWeapon").GetComponent<Text>();
+		} else {
+
+		}
+	
+		if(healthbar_text==null) {
+			healthbar_text = GameObject.FindGameObjectWithTag("HealthBarText").GetComponent<Text>();
         } else {
 
         }
-
 		if(ShotGunGui==null) {
 			ShotGunGui = GameObject.FindGameObjectWithTag("ShotGunGui").GetComponent<Image>();
 		} else {
@@ -99,12 +109,20 @@ public class GameManager : MonoBehaviour {
 		} else {
 
 		}
+
+		if(healthbarfilerGui==null) {
+			healthbarfilerGui = GameObject.FindGameObjectWithTag("healthbarfiler").GetComponent<Image>();
+		} else {
+
+		}
+
+
     }
 
     void textUpdater() {
         Life_text.text = "LIVES: " + PlayerLives;
         Score_text.text = "SCORE: " + PlayerScore;
-
+		healthbar_text.text =   PlayerHealth + "/100"  ;
 
 
 		if (BulletSpawerConponet.GetComponent<BulletSpawner>().HandGunisActive== true)
@@ -137,6 +155,10 @@ public class GameManager : MonoBehaviour {
         Player.transform.position = PlayerStartPostion;
         PlayerStartPostion = Player.transform.position;
       //  PlayerAmmo = playerStartammo;
+		PlayerHealth =  100;
+		HandGunAmmon = playerStartammo [0];
+		ShotGunAmmon = playerStartammo [1];
+		RifeAmmon = playerStartammo [2];
     }
 
 
@@ -156,4 +178,21 @@ public class GameManager : MonoBehaviour {
 		}
 	
 	}
+
+
+	public void DecreasePlayerHealth (int x)
+	{
+		Debug.Log (" check health1 " +  PlayerHealth );
+		PlayerHealth = PlayerHealth - x;
+		Debug.Log (" check health2 " +  PlayerHealth );
+		float yup =(PlayerHealth / 100);
+		Debug.Log (" check hBar " + yup);
+
+		healthbarfilerGui.fillAmount = yup ;
+
+	}
+
+
+
+
 }
