@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour {
 		ShotGunAmmon = playerStartammo [1];
 		RifeAmmon = playerStartammo [2];
 		PlayerHealth = 100;
+		healthbarfilerGui.fillAmount = 1;
     }
 
     void FixedUpdate()
@@ -182,17 +183,32 @@ public class GameManager : MonoBehaviour {
 
 	public void DecreasePlayerHealth (int x)
 	{
+
+		if (PlayerHealth > 0)
+		{
 		Debug.Log (" check health1 " +  PlayerHealth );
 		PlayerHealth = PlayerHealth - x;
 		Debug.Log (" check health2 " +  PlayerHealth );
-		float yup =(PlayerHealth / 100);
+
+	    float yup = PlayerHealth / 100.0f;
 		Debug.Log (" check hBar " + yup);
 
 		healthbarfilerGui.fillAmount = yup ;
 
+		}
+
+		if (PlayerHealth < 75)
+		{
+			healthbarfilerGui.color =  Color.yellow;
+		}
+		//else if (PlayerHealth < 65)
+		//{
+		//	healthbarfilerGui.color = Color32 (255,165,0);
+		//}
+		else if (PlayerHealth < 30)
+		{
+			healthbarfilerGui.color = Color.red;
+		}
+
 	}
-
-
-
-
 }
