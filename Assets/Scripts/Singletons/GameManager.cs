@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour {
 		ShotGunAmmon = playerStartammo [1];
 		RifeAmmon = playerStartammo [2];
 		PlayerHealth = 100;
+		PlayerScore = 1000;
 		healthbarfilerGui.fillAmount = 1;
     }
 

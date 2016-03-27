@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class shop : MonoBehaviour {
+	public GameObject Gamemgn=null;
 	// enter the shop
 	public Image EnterShop = null;
 	public Button YesButton = null;
@@ -14,10 +15,14 @@ public class shop : MonoBehaviour {
 	public Button BuyButton = null;
 	public Button ExistButton = null;
 	public Image Description = null;
-	public GameObject[] items = null;
+	///public Text  Description_test = null;
 	public Image Descriptionborder = null;
 	public Image ScrollbarA = null;
 	public Image handle= null;
+	public Button[] item = null;
+	public Text[] price = null;
+	public Image[] priceicon = null;
+	bool SGABUY = true;
 	void intializeShopComponents() 
 	{
 		if (EnterShop == null) {
@@ -89,11 +94,19 @@ public class shop : MonoBehaviour {
 		Descriptionborder.GetComponent<Image>().enabled = true;
 		Description.GetComponentInChildren<Text> ().enabled = true;
 		ScrollView.GetComponent<ScrollRect> ().enabled = true;
-		ScrollView.GetComponentInChildren<Button> ().enabled = true;
 		ScrollView.GetComponentInChildren<Image> ().enabled = true;
 		ScrollbarA.GetComponent<Image> ().enabled = true;
 		handle.GetComponent<Image> ().enabled = true;
-		
+		for (int j = 0; j < item.Length; ++j) 
+		{
+			
+			item [j].GetComponent<Image> ().enabled = true;
+			item [j].GetComponentInChildren<Text> ().enabled = true;
+			price [j].GetComponentInChildren<Text> ().enabled = true;
+			priceicon [j].GetComponentInChildren<Image> ().enabled = true;
+		}
+		ExistTheShop ();
+
 	}
 
 	public void closeShop()
@@ -111,18 +124,32 @@ public class shop : MonoBehaviour {
 		ScrollView.GetComponent<ScrollRect> ().enabled = false;
 		ScrollView.GetComponentInChildren<Image> ().enabled = false;
 		ScrollView.GetComponentInChildren<ScrollRect> ().enabled = false;
-		//for (int i = 0; i > items.Length; ++i)
-		//{
-		//	items [i].GetComponent<Image> ().enabled = false;
-		//	items [i].GetComponentInChildren<Text> ().enabled = false;
-		//}
-
 		ScrollbarA.GetComponent<Image> ().enabled = false;
 		handle.GetComponent<Image> ().enabled = false;
-
+		for (int i = 0; i < item.Length; ++i) 
+		{ 
+			
+			item [i].GetComponent<Image> ().enabled = false;
+			item [i].GetComponentInChildren<Text> ().enabled = false;
+			price [i].GetComponentInChildren<Text> ().enabled = false;
+			priceicon [i].GetComponentInChildren<Image> ().enabled = false;
+		}
 	}
+
+
+	public  void lookATSB()
+	{
+		Description.GetComponentInChildren<Text> ().text = " Here some ShotGunAmmo";
+		SGABUY = true;
+	}
+
+	public  void Buy()
+	{
+		//if(SGABUY == true &&)
+	}
+
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 }
