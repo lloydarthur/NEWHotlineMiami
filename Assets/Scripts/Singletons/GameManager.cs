@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour {
 	public int RifeAmmon;
 	public int ShotGunAmmon;
 	public int HandGunAmmon;
-    //public int PlayerAmmo;
     public int PlayerHealth;
     public int[] playerStartammo;
     public GameObject Player=null;
@@ -121,9 +120,10 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    void textUpdater() {
+    void textUpdater() 
+	{
         Life_text.text = "LIVES: " + PlayerLives;
-        Score_text.text = "SCORE: " + PlayerScore;
+		Score_text.text = "Score: "+ PlayerScore;
 		healthbar_text.text =   PlayerHealth + "/100"  ;
 
 

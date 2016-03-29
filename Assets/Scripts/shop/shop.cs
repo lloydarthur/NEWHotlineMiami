@@ -22,7 +22,14 @@ public class shop : MonoBehaviour {
 	public Button[] item = null;
 	public Text[] price = null;
 	public Image[] priceicon = null;
-	bool SGABUY = true;
+	public int SGAPrice  ;
+	public int RAPrice;
+	public int HGAPrice;
+	public int HPPrice ;
+	bool SGABUY = false;
+	bool HGABUY = false;
+	bool RABUY = false;
+	bool HPBUY = false;
 	void intializeShopComponents() 
 	{
 		if (EnterShop == null) {
@@ -47,12 +54,23 @@ public class shop : MonoBehaviour {
 		}
 			
 	}
+	void intializeShop()
+	{
+		price [0].text = SGAPrice.ToString();// SGAPrice
+		price [1].text = HGAPrice.ToString(); // HGAPrice
+		price [2].text = RAPrice.ToString(); // RAPrice
+		price [3].text = HPPrice.ToString(); // HPPrice
+
+		Description.GetComponentInChildren<Text>().text = "info:";
+
+	}
 	// Use this for initialization
 	void Start () 
 	{
 		//ExistTheShop ();
 		closeShop ();
 	}
+
 
 
 		void EnterTheShop()
@@ -79,10 +97,12 @@ public class shop : MonoBehaviour {
 		NoButton.GetComponent<Button>().enabled = false;
 		NoButton.GetComponent<Image>().enabled = false;
 		NoButton.GetComponentInChildren<Text>().enabled = false;
+
 	}
 
 	public void OnSell()
 	{
+		intializeShop ();
 		Shop.enabled = true;
 		BuyButton.GetComponent<Button>().enabled = true;
 		BuyButton.GetComponent<Image>().enabled = true;
@@ -134,18 +154,71 @@ public class shop : MonoBehaviour {
 			price [i].GetComponentInChildren<Text> ().enabled = false;
 			priceicon [i].GetComponentInChildren<Image> ().enabled = false;
 		}
+
 	}
 
 
-	public  void lookATSB()
+
+
+	public  void healthpack()
 	{
-		Description.GetComponentInChildren<Text> ().text = " Here some ShotGunAmmo";
-		SGABUY = true;
+		Description.GetComponentInChildren<Text> ().text = "info: Heath packs give you health";
+		HPBUY = true;
+		HGABUY = false;
+		SGABUY = false;
+		RABUY = false;
 	}
 
+	public  void HGD()
+	{
+		Description.GetComponentInChildren<Text> ().text = "info: you will get HandGun Ammo";
+		HGABUY = true;
+		SGABUY = false;
+		RABUY = false;
+		HPBUY = false;
+	}
+	public  void SGD()
+	{
+		Description.GetComponentInChildren<Text> ().text = "info: you will get ShotGun Ammo";
+		SGABUY = true;
+		RABUY = false;
+		HPBUY = false;
+		HGABUY = false;
+	}
+	public  void RD()
+	{
+		Description.GetComponentInChildren<Text> ().text = "info: you will get Rife Ammo";
+		RABUY = true;
+		HPBUY = false;
+		HGABUY = false;
+		SGABUY = false;
+	}
 	public  void Buy()
 	{
-		//if(SGABUY == true &&)
+		if (SGABUY == true&& Gamemgn.GetComponent<GameManager> ().PlayerScore > SGAPrice ) 
+		{
+			Gamemgn.GetComponent<GameManager> ().PlayerScore -= SGAPrice;
+			Gamemgn.GetComponent<GameManager> ().ShotGunAmmon += 14;
+
+		}
+		else if (HGABUY == true && Gamemgn.GetComponent<GameManager> ().PlayerScore > HGAPrice) 
+		{
+			Gamemgn.GetComponent<GameManager> ().PlayerScore -= HGAPrice;
+			Gamemgn.GetComponent<GameManager> ().HandGunAmmon += 7;
+
+		}
+		else if (RABUY == true&& Gamemgn.GetComponent<GameManager> ().PlayerScore > RAPrice) 
+		{
+			Gamemgn.GetComponent<GameManager> ().PlayerScore -= RAPrice;
+			Gamemgn.GetComponent<GameManager> ().RifeAmmon +=24;
+
+		}
+		else if (HPBUY == true&& Gamemgn.GetComponent<GameManager> ().PlayerScore > HPPrice) 
+		{
+			Gamemgn.GetComponent<GameManager> ().PlayerScore -= HPPrice;
+			Gamemgn.GetComponent<GameManager> ().PlayerHealth += 25;
+
+		}
 	}
 
 	// Update is called once per frame
