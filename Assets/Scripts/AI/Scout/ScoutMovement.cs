@@ -6,7 +6,7 @@ public class ScoutMovement : MonoBehaviour {
     public GameObject Player = null;//player ref
     public GameObject Enemy;//gameobject Ref
     public Transform[] wayPoints;//waypoint array, dydnamic size based 
-    public Vector3 intPlayerpos;//intial postion check for debugging 
+    //public Vector3 intPlayerpos;//intial postion check for debugging 
 
     public bool playerFound;//link to projectile spawner
     public bool centuryMode = false;//simple bool for designers, choose between general patrol and century mode
@@ -14,17 +14,15 @@ public class ScoutMovement : MonoBehaviour {
     public float rayOffset;// offset angle threshold for feild of veiw 
     public float rayDistence;// feild of view distence. how far an enemy can dectect player
     public float Rspeed = 0.1F;// rotation speed for century mode
-    public float _Angle;//angle thershold for century mode e.g if this is set to 60 threshold will 
+    private float _Angle;//angle thershold for century mode e.g if this is set to 60 threshold will 
     //be 60to -60 degrees reltive to the orientation of the game object NOT world oriention of object
     public float _Period; //sets period of rotation, how many minutes per phase
-    private float patrolAngleOffset;//stes intial world rotation of object
+    //private float patrolAngleOffset;//stes intial world rotation of object
     public int curWp;//sets waypoint target
     public int speed;//set speed 
     public int checkSeconds;
     private float _Time;//timestamp defintion for century mode
-
-    // public int Health;
-    //public int Damage;
+    public float angleOffset; 
    
     void Start()
     {
@@ -37,6 +35,7 @@ public class ScoutMovement : MonoBehaviour {
         if (DrawFOV) { drawFOV(); }//debug of FOV
         playerDectection();
         gen_Movement();
+        Debug.Log(this.transform.rotation.z*(180/Mathf.PI));
     }
     IEnumerator CenturyMode()
     {
@@ -93,9 +92,11 @@ public class ScoutMovement : MonoBehaviour {
                         transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));// sets transform speed
                     }
                     else if (Vector3.Distance(Enemy.transform.position, wayPoints[curWp].position) <= 1f)// if way point is within a distence of 1
-                    {
+                    {   
+                        
                         StartCoroutine(CenturyMode());
                         curWp++;//change to next way point Transform
+                        
                     }
                 }
                 else
@@ -107,8 +108,33 @@ public class ScoutMovement : MonoBehaviour {
             else
             {
                 _Time = _Time + Time.deltaTime;//sets time stamp
-                float phase = Mathf.Sin(_Time / _Period);//creates rotation phase based on period: how many times per minute the object rotates back and forth
-                transform.rotation = Quaternion.Euler(new Vector3(Enemy.transform.rotation.x, Enemy.transform.rotation.y, (phase * _Angle)/Enemy.transform.rotation.z)); //movement output 
+                float phase = Mathf.Sin(_Time/_Period);//has sin error. fucks with offset 
+                float Zref=this.transform.eulerAngles.z-angleOffset;//offset 
+                _Angle=Mathf.MoveTowardsAngle(transform.eulerAngles.z,Zref,phase);
+                transform.eulerAngles = new Vector3(0, 0,_Angle);//out put
+                Debug.Log(Mathf.RoundToInt(this.transform.rotation.z*(180f/Mathf.PI)));
+                
+                #region oldMethods
+                //        From = new Vector3(0f, 0f,_Angle+z);
+                //        To = new Vector3(0f, 0f,- _Angle+z);
+                //float t = Mathf.PingPong(Time.time * Rspeed * 2.0f, 1.0f);
+                //transform.eulerAngles = Vector3.Lerp(From, To, t);
+              
+                
+                //#region Notes
+                //_Time = _Time + Time.deltaTime;//sets time stamp
+                //float phase = Mathf.Sin(_Time / _Period);//creates rotation phase based on period: how many times per minute the object rotates back and forth
+                //transform.rotation = Quaternion.Euler(new Vector3(Enemy.transform.rotation.x, Enemy.transform.rotation.y, 90+(phase * _Angle))); //movement output 
+                //#endregion
+                //Vector3 targetPosition = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z+40);
+                //Vector3 oscillationDirection = this.transform.position;
+
+                //float offset = Mathf.Sin(Time.time * WaveLength) * Amplitude;
+
+                //Vector3 osc = offset * oscillationDirection;
+
+                //transform.position = targetPosition + osc;
+                #endregion
             }
 
         }
