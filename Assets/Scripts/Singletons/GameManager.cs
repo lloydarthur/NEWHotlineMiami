@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public int playerStartammo;
     public GameObject Player=null;
 
+    public string PlayerName = "Player1";
+
     public Vector3 PlayerStartPostion;
 
     private static GameManager instance;
@@ -21,9 +23,11 @@ public class GameManager : MonoBehaviour {
     public Text Score_text=null;
     public Text Life_text=null;
     public Text Ammo_text=null;
+
     #endregion
 
-    void Awake() {
+    void Awake() 
+    {
         if(instance==null)
         {
             instance = this;
@@ -39,14 +43,16 @@ public class GameManager : MonoBehaviour {
     }
 
     void FixedUpdate()
-    {
-        textUpdater();
+    {   textUpdater();
         if(PlayerLives<=0) {
-			SceneManager.LoadScene("GameOver");
+    		SceneManager.LoadScene("GameOver");
         }
     }
 
-    void intializeComponents() {
+    void intializeComponents() 
+    {
+        PlayerScore=0;
+    
         if(Player == null) {
             Player = GameObject.FindGameObjectWithTag("Player");
         }else {
@@ -56,13 +62,11 @@ public class GameManager : MonoBehaviour {
         if(Score_text == null) {
         	Score_text = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
         } else {
-
         }
 
         if(Life_text == null) {
             Life_text = GameObject.FindGameObjectWithTag("Lives").GetComponent<Text>();
         } else {
-
         }
 
         if(Ammo_text==null) {
@@ -72,10 +76,11 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void textUpdater() {
-        Life_text.text = "LIVES: " + PlayerLives;
-        Score_text.text = "SCORE: " + PlayerScore;
-        Ammo_text.text = "AMMO: "+ PlayerAmmo;
+    void textUpdater() 
+    { 
+        Life_text.text = "LIVES: " + instance.PlayerLives;
+        Score_text.text = "SCORE: " + instance.PlayerScore;
+        Ammo_text.text = "AMMO: "+ instance.PlayerAmmo;
     }
     
     public void resetPlayer() {
@@ -83,4 +88,5 @@ public class GameManager : MonoBehaviour {
         PlayerStartPostion = Player.transform.position;
         PlayerAmmo = playerStartammo;
     }
+        
 }

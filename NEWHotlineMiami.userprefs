@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\HighScore\ScoreManager.cs">
+    <Files>
+      <File FileName="Assets\Scripts\HighScore\ScoreManager.cs" Line="182" Column="27" />
+      <File FileName="Assets\Remove This\HS_Test.cs" Line="10" Column="6" />
+      <File FileName="Assets\Scripts\Singletons\GameManager.cs" Line="76" Column="10" />
+      <File FileName="Assets\Scripts\HighScore\PlayerScoreList.cs" Line="49" Column="10" />
+      <File FileName="Assets\Scripts\Scene\SceneLoader.cs" Line="11" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
