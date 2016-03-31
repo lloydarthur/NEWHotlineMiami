@@ -51,7 +51,7 @@ public class GruntMovement : MonoBehaviour {
         RaycastHit2D hitR = Physics2D.Raycast(Enemy.transform.position, Quaternion.AngleAxis(-rayOffset, Enemy.transform.forward) * Enemy.transform.right, rayDistence, 1);//left offset 
         #endregion
         bool raycastcheck = false;
-        Debug.Log(raycastcheck);
+        //Debug.Log(raycastcheck);
         //Physics2D.Raycast()
         #region Player Detection Behavior
         if (hit.collider == Player.GetComponent<Collider2D>() || hitL.collider == Player.GetComponent<Collider2D>() || hitR.collider == Player.GetComponent<Collider2D>())
