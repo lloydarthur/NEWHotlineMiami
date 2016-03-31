@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{9FF4ED6F-2C28-3F5D-57C8-1E3DAE6ABD6F}</ProjectGuid>
+    <ProjectGuid>{6BAECC53-A4D6-ADC1-207D-599E02A5D01D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,12 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Remove This\HS_Test.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\EnemieBullet.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\GruntGun.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\GruntMovement.cs" />
-     <Compile Include="Assets\Scripts\HighScore\PlayerScoreList.cs" />
-     <Compile Include="Assets\Scripts\HighScore\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\Instruction\Controls.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\BulletSpawner.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\PlayerCollision.cs" />
@@ -69,7 +66,6 @@
      <Compile Include="Assets\Scripts\Weapons\Shotgun.cs" />
      <Compile Include="Assets\Sounds\AudioManager.cs" />
      <Compile Include="Assets\Sounds\AudioManager2.cs" />
-     <None Include="Assets\Misc_Materials\Fonts\disco_duck\discod.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
