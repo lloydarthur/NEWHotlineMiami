@@ -35,7 +35,6 @@ public class GruntMovement : MonoBehaviour {
     void FixedUpdate()
     {
         if (DrawFOV) { drawFOV(); }//debug of FOV
-        playerDectection();
         gen_Movement();
     }
     void drawFOV()
@@ -44,28 +43,25 @@ public class GruntMovement : MonoBehaviour {
         Debug.DrawRay(Enemy.transform.position, Quaternion.AngleAxis(-rayOffset, Enemy.transform.forward) * Enemy.transform.right, Color.red, rayDistence, false);//right offset debug
         Debug.DrawRay(Enemy.transform.position, Enemy.transform.right, Color.blue, rayDistence, false);//true direction ray debug
     }
-    void playerDectection()
-    {  
+    void gen_Movement()
+    {
+        #region FOV Def
         RaycastHit2D hit = Physics2D.Raycast(Enemy.transform.position, Enemy.transform.right, rayDistence, 4);//true direction ray
         RaycastHit2D hitL = Physics2D.Raycast(Enemy.transform.position, Quaternion.AngleAxis(rayOffset, Enemy.transform.forward) * Enemy.transform.right, rayDistence, 1);//right offset 
         RaycastHit2D hitR = Physics2D.Raycast(Enemy.transform.position, Quaternion.AngleAxis(-rayOffset, Enemy.transform.forward) * Enemy.transform.right, rayDistence, 1);//left offset 
-
-        
-         if (hit.collider == Player.GetComponent<Collider2D>() || hitL.collider == Player.GetComponent<Collider2D>() || hitR.collider == Player.GetComponent<Collider2D>())
-         {
-             playerFound = true;
-         }
-       
-    }
-    void gen_Movement()
-    {
-        
-        if (playerFound)
+        #endregion
+        bool raycastcheck = false;
+        //Debug.Log(raycastcheck);
+        //Physics2D.Raycast()
+        #region Player Detection Behavior
+        if (hit.collider == Player.GetComponent<Collider2D>() || hitL.collider == Player.GetComponent<Collider2D>() || hitR.collider == Player.GetComponent<Collider2D>())
         {
             Debug.Log("GRUNT SAW PLAYER!");
             #region Follow and Shoot
+            raycastcheck = true;
             Enemy.transform.LookAt(Player.transform.position);//sets direction 
             Enemy.transform.Rotate(new Vector3(0, -90, 0), Space.Self);//sets rotation
+            playerFound = true;//gun object activation
             if (Vector3.Distance(Enemy.transform.position, Player.transform.position) > 2f)//move if distance from target is greater than 1
             {
                 transform.Translate(new Vector3((speed * 1.5f) * Time.deltaTime, 0, 0));// sets transform speed
@@ -111,7 +107,7 @@ public class GruntMovement : MonoBehaviour {
         }
         #endregion
     }
-   
+    #endregion
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Pbullet")
