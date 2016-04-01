@@ -114,13 +114,22 @@ public class PlayerCollision : MonoBehaviour {
 				StartCoroutine (Level2_3BackTrigger());
 
 			}
-
-			/*if (c.tag == "ShotGunAmmo") {
-				Debug.Log("AMMo");
+			// pick  Ammo
+			if (c.tag == "ShotGunAmmo") {
+				Debug.Log("SGA");
 				Destroy (c.gameObject);
-				Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon = Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon+16; 
-			}*/
-
+				Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon +=16; 
+			}
+			if (c.tag == "HandGunAmmo") {
+				Debug.Log("HGA");
+				Destroy (c.gameObject);
+				Gamgmnger.GetComponent<GameManager> ().HandGunAmmon += 7;
+			}
+			if (c.tag == "RifeAmmo") {
+				Debug.Log("RA");
+				Destroy (c.gameObject);
+				Gamgmnger.GetComponent<GameManager> ().RifeAmmon += 24; 
+			}
 
 		}
 

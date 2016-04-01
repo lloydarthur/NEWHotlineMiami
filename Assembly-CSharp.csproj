@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\Singletons\GameManager.cs" />
      <Compile Include="Assets\Scripts\Singletons\MusicManager.cs" />
      <Compile Include="Assets\Scripts\Singletons\SFXmng.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Ammo.cs" />
      <Compile Include="Assets\Scripts\Weapons\Handgun.cs" />
      <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />
      <Compile Include="Assets\Scripts\Weapons\Shotgun.cs" />
