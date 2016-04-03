@@ -8,6 +8,7 @@ public class GruntGun : MonoBehaviour
     public GameObject projectile;//projectile prefeb reference 
     public float TimeBetweenSpawn;//sets shot frequency
     private float TimeStamp;
+    public Component Script;
     void Start()
     {
         SpawnerT = this.gameObject.GetComponentInParent<Transform>();//sets transform to parent
