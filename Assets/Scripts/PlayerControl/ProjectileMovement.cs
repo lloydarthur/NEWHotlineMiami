@@ -21,14 +21,14 @@ public class ProjectileMovement : MonoBehaviour {
 		}
 	}
 		
-    void OnCollisionEnter2D (Collision2D c) {
-        if (c.gameObject.tag == "Level") {
-            Destroy(gameObject);
-        }
-        if (c.gameObject.tag == "grunt")
-        {
-            Destroy(c.gameObject);
-            Destroy(gameObject);
-        }
-    }
+    //void OnCollisionEnter2D (Collision2D c) {
+    //    if (c.gameObject.tag == "Level") {
+    //        Destroy(gameObject);
+    //    }
+    //    if (c.gameObject.tag == "grunt")
+    //    {
+    //        Destroy(c.gameObject);
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
