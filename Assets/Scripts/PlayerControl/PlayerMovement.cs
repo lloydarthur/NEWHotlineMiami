@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool playerIsdead= false;
 
 	// Use this for initialization
-	public int PlayerMovementspeed; 
+	public float PlayerMovementspeed; 
 
 	
 	// Update is called once per frame
