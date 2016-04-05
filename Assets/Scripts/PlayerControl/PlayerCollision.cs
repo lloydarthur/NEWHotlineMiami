@@ -26,30 +26,40 @@ public class PlayerCollision : MonoBehaviour {
 	IEnumerator Level2() {
 		float fadeTime = GameObject.Find("Game_Manager").GetComponent<Fading>().BeginFade(1);
 		yield return new WaitForSeconds(fadeTime);
-		SceneManager.LoadScene ("Level2");
+		SceneManager.LoadScene ("Level2-1");
 	}
 	IEnumerator Level2_1EndTrigger() {
+		float fadeTime = GameObject.Find("Game_Manager").GetComponent<Fading>().BeginFade(1);
+		yield return new WaitForSeconds(fadeTime);
+		SceneManager.LoadScene ("Level3-1");
+	}
+	IEnumerator Level3_1EndTrigger() {
+		float fadeTime = GameObject.Find("Game_Manager").GetComponent<Fading>().BeginFade(1);
+		yield return new WaitForSeconds(fadeTime);
+		SceneManager.LoadScene ("Level3-2-3-4");
+	}
+	IEnumerator Level3_2EndTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
 		player.transform.position = new Vector3 (-143, -25);
 		camera.transform.position = new Vector3 (-143, -25, -10);
 	}
-	IEnumerator Level2_2EndTrigger() {
+	IEnumerator Level3_3EndTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
 		player.transform.position = new Vector3 (-283, -78);
 		camera.transform.position = new Vector3 (-283, -78, -10);
 	}
-	IEnumerator Level2_2BackTrigger() {
+	IEnumerator Level3_2BackTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
 		player.transform.position = new Vector3 (-36, -26);
 		camera.transform.position = new Vector3 (-36, -26, -10);
 	}
-	IEnumerator Level2_3BackTrigger() {
+	IEnumerator Level3_3BackTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
@@ -93,19 +103,22 @@ public class PlayerCollision : MonoBehaviour {
 			}
 			if (c.tag == "Level2-1EndTrigger") {
 				StartCoroutine (Level2_1EndTrigger());
+			}
+			if (c.tag == "Level3-1EndTrigger") {
+				StartCoroutine (Level3_1EndTrigger());
+			}
+			if (c.tag == "Level3-2EndTrigger") {
+				StartCoroutine (Level3_2EndTrigger());
+			}
+			if (c.tag == "Level3-3EndTrigger") {
+				StartCoroutine (Level3_3EndTrigger());
+			}
+			if (c.tag == "Level3-2BackTrigger") {
+				StartCoroutine (Level3_2BackTrigger());
 
 			}
-			if (c.tag == "Level2-2EndTrigger") {
-				StartCoroutine (Level2_2EndTrigger());
-
-
-			}
-			if (c.tag == "Level2-2BackTrigger") {
-				StartCoroutine (Level2_2BackTrigger());
-
-			}
-			if (c.tag == "Level2-3BackTrigger") {
-				StartCoroutine (Level2_3BackTrigger());
+			if (c.tag == "Level3-3BackTrigger") {
+				StartCoroutine (Level3_3BackTrigger());
 
 			}
 		}
