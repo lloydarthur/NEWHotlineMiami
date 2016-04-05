@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class PlayerCollision : MonoBehaviour {
 
 	//Declarations
+	public GameObject Gamgmnger=null;
 	public GameObject player;
+	public GameObject BulletSpawer = null;
 	public Rigidbody2D riflePrefab, pistolPrefab, shotgunPrefab;
 	public SpriteRenderer render, levelindicator;
 	public Sprite playerPistolSprite, playerShotgunSprite, playerRifleSprite;
@@ -81,6 +83,10 @@ public class PlayerCollision : MonoBehaviour {
 		if (c.tag == "Level1EndTrigger") {
 			levelindicator.enabled = true;
 		}
+		if (c.tag == "test") {
+			Gamgmnger.GetComponent<GameManager> ().DecreasePlayerHealth (5);
+			Debug.Log ("Test it work");
+		}
 	}
 
 	//When triggers stay collided
@@ -108,6 +114,23 @@ public class PlayerCollision : MonoBehaviour {
 				StartCoroutine (Level2_3BackTrigger());
 
 			}
+			// pick  Ammo
+			if (c.tag == "ShotGunAmmo") {
+				Debug.Log("SGA");
+				Destroy (c.gameObject);
+				Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon +=16; 
+			}
+			if (c.tag == "HandGunAmmo") {
+				Debug.Log("HGA");
+				Destroy (c.gameObject);
+				Gamgmnger.GetComponent<GameManager> ().HandGunAmmon += 7;
+			}
+			if (c.tag == "RifeAmmo") {
+				Debug.Log("RA");
+				Destroy (c.gameObject);
+				Gamgmnger.GetComponent<GameManager> ().RifeAmmon += 24; 
+			}
+
 		}
 
 		if (c.tag == "Handgun" && currentGun != "pistol")  {
@@ -123,6 +146,7 @@ public class PlayerCollision : MonoBehaviour {
 					BulletSpawner.GetComponent<BulletSpawner>().ShotGunisActive= false;
 					BulletSpawner.GetComponent<BulletSpawner>().HandGunisActive= true;
 					BulletSpawner.GetComponent<BulletSpawner> ().AssaultRifleisActive = false;
+
 				}
 			}
 		}
@@ -165,6 +189,8 @@ public class PlayerCollision : MonoBehaviour {
 				}
 			}
 		}
+
+
 		if (Input.GetKeyUp(KeyCode.E)) {
 			gunPickedUpConfirm = false;
 		}
