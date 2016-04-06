@@ -6,9 +6,7 @@ using UnityEngine.UI;
 public class PlayerCollision : MonoBehaviour {
 
 	//Declarations
-	public GameObject Gamgmnger=null;
 	public GameObject player;
-	public GameObject BulletSpawer = null;
 	public Rigidbody2D riflePrefab, pistolPrefab, shotgunPrefab;
 	public SpriteRenderer render, levelindicator;
 	public Sprite playerPistolSprite, playerShotgunSprite, playerRifleSprite;
@@ -28,30 +26,40 @@ public class PlayerCollision : MonoBehaviour {
 	IEnumerator Level2() {
 		float fadeTime = GameObject.Find("Game_Manager").GetComponent<Fading>().BeginFade(1);
 		yield return new WaitForSeconds(fadeTime);
-		SceneManager.LoadScene ("Level2");
+		SceneManager.LoadScene ("Level2-1");
 	}
 	IEnumerator Level2_1EndTrigger() {
+		float fadeTime = GameObject.Find("Game_Manager").GetComponent<Fading>().BeginFade(1);
+		yield return new WaitForSeconds(fadeTime);
+		SceneManager.LoadScene ("Level3-1");
+	}
+	IEnumerator Level3_1EndTrigger() {
+		float fadeTime = GameObject.Find("Game_Manager").GetComponent<Fading>().BeginFade(1);
+		yield return new WaitForSeconds(fadeTime);
+		SceneManager.LoadScene ("Level3-2-3-4");
+	}
+	IEnumerator Level3_2EndTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
 		player.transform.position = new Vector3 (-143, -25);
 		camera.transform.position = new Vector3 (-143, -25, -10);
 	}
-	IEnumerator Level2_2EndTrigger() {
+	IEnumerator Level3_3EndTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
 		player.transform.position = new Vector3 (-283, -78);
 		camera.transform.position = new Vector3 (-283, -78, -10);
 	}
-	IEnumerator Level2_2BackTrigger() {
+	IEnumerator Level3_2BackTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
 		player.transform.position = new Vector3 (-36, -26);
 		camera.transform.position = new Vector3 (-36, -26, -10);
 	}
-	IEnumerator Level2_3BackTrigger() {
+	IEnumerator Level3_3BackTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
@@ -83,10 +91,6 @@ public class PlayerCollision : MonoBehaviour {
 		if (c.tag == "Level1EndTrigger") {
 			levelindicator.enabled = true;
 		}
-		if (c.tag == "test") {
-			Gamgmnger.GetComponent<GameManager> ().DecreasePlayerHealth (5);
-			Debug.Log ("Test it work");
-		}
 	}
 
 	//When triggers stay collided
@@ -99,38 +103,24 @@ public class PlayerCollision : MonoBehaviour {
 			}
 			if (c.tag == "Level2-1EndTrigger") {
 				StartCoroutine (Level2_1EndTrigger());
+			}
+			if (c.tag == "Level3-1EndTrigger") {
+				StartCoroutine (Level3_1EndTrigger());
+			}
+			if (c.tag == "Level3-2EndTrigger") {
+				StartCoroutine (Level3_2EndTrigger());
+			}
+			if (c.tag == "Level3-3EndTrigger") {
+				StartCoroutine (Level3_3EndTrigger());
+			}
+			if (c.tag == "Level3-2BackTrigger") {
+				StartCoroutine (Level3_2BackTrigger());
 
 			}
-			if (c.tag == "Level2-2EndTrigger") {
-				StartCoroutine (Level2_2EndTrigger());
-
-
-			}
-			if (c.tag == "Level2-2BackTrigger") {
-				StartCoroutine (Level2_2BackTrigger());
+			if (c.tag == "Level3-3BackTrigger") {
+				StartCoroutine (Level3_3BackTrigger());
 
 			}
-			if (c.tag == "Level2-3BackTrigger") {
-				StartCoroutine (Level2_3BackTrigger());
-
-			}
-			// pick  Ammo
-			if (c.tag == "ShotGunAmmo") {
-				Debug.Log("SGA");
-				Destroy (c.gameObject);
-				Gamgmnger.GetComponent<GameManager> ().ShotGunAmmon +=16; 
-			}
-			if (c.tag == "HandGunAmmo") {
-				Debug.Log("HGA");
-				Destroy (c.gameObject);
-				Gamgmnger.GetComponent<GameManager> ().HandGunAmmon += 7;
-			}
-			if (c.tag == "RifeAmmo") {
-				Debug.Log("RA");
-				Destroy (c.gameObject);
-				Gamgmnger.GetComponent<GameManager> ().RifeAmmon += 24; 
-			}
-
 		}
 
 		if (c.tag == "Handgun" && currentGun != "pistol")  {
@@ -146,7 +136,6 @@ public class PlayerCollision : MonoBehaviour {
 					BulletSpawner.GetComponent<BulletSpawner>().ShotGunisActive= false;
 					BulletSpawner.GetComponent<BulletSpawner>().HandGunisActive= true;
 					BulletSpawner.GetComponent<BulletSpawner> ().AssaultRifleisActive = false;
-
 				}
 			}
 		}
@@ -189,8 +178,6 @@ public class PlayerCollision : MonoBehaviour {
 				}
 			}
 		}
-
-
 		if (Input.GetKeyUp(KeyCode.E)) {
 			gunPickedUpConfirm = false;
 		}
