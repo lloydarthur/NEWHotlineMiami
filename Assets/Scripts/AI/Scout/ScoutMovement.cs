@@ -8,7 +8,7 @@ public class ScoutMovement : MonoBehaviour {
     public Transform[] wayPoints;//waypoint array, dydnamic size based 
     //public Vector3 intPlayerpos;//intial postion check for debugging 
 
-    public bool playerFound;//link to projectile spawner
+    public bool playerFound=false;//link to projectile spawner
     public bool centuryMode = false;//simple bool for designers, choose between general patrol and century mode
     public bool DrawFOV = false;//switchs the feild of veiw visualizations off and on for dubugging
     public float rayOffset;// offset angle threshold for feild of veiw 
@@ -31,11 +31,12 @@ public class ScoutMovement : MonoBehaviour {
     
     }
     void FixedUpdate()
-    {
-        if (DrawFOV) { drawFOV(); }//debug of FOV
+    {   
         playerDectection();
+        if (DrawFOV) { drawFOV(); }//debug of FOV
+     
         gen_Movement();
-        Debug.Log(this.transform.rotation.z*(180/Mathf.PI));
+       // Debug.Log(this.transform.rotation.z*(180/Mathf.PI));
     }
     IEnumerator CenturyMode()
     {
@@ -51,15 +52,16 @@ public class ScoutMovement : MonoBehaviour {
     }
     void playerDectection()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Enemy.transform.position, Enemy.transform.right, rayDistence, 4);//true direction ray
-        RaycastHit2D hitL = Physics2D.Raycast(Enemy.transform.position, Quaternion.AngleAxis(rayOffset, Enemy.transform.forward) * Enemy.transform.right, rayDistence, 1);//right offset 
-        RaycastHit2D hitR = Physics2D.Raycast(Enemy.transform.position, Quaternion.AngleAxis(-rayOffset, Enemy.transform.forward) * Enemy.transform.right, rayDistence, 1);//left offset 
+        RaycastHit2D hit = Physics2D.Raycast(Enemy.transform.position, Enemy.transform.right, rayDistence);//true direction ray
+        RaycastHit2D hitL = Physics2D.Raycast(Enemy.transform.position, Quaternion.AngleAxis(rayOffset, Enemy.transform.forward) * Enemy.transform.right, rayDistence);//right offset 
+        RaycastHit2D hitR = Physics2D.Raycast(Enemy.transform.position, Quaternion.AngleAxis(-rayOffset, Enemy.transform.forward) * Enemy.transform.right, rayDistence);//left offset 
 
 
         if (hit.collider == Player.GetComponent<Collider2D>() || hitL.collider == Player.GetComponent<Collider2D>() || hitR.collider == Player.GetComponent<Collider2D>())
         {
             playerFound = true;
         }
+      
 
     }
     void gen_Movement()
@@ -140,12 +142,12 @@ public class ScoutMovement : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Pbullet")
-        {
-            Destroy(this.gameObject);
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().PlayerScore += 200;
-        }
-    }
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.gameObject.tag == "Pbullet")
+    //    {
+    //        Destroy(this.gameObject.transform.parent);
+    //        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().PlayerScore += 200;
+    //    }
+    //}
 }
