@@ -91,6 +91,7 @@ public class PlayerCollision : MonoBehaviour {
 		if (c.tag == "Level1EndTrigger") {
 			levelindicator.enabled = true;
 		}
+
 	}
 
 	//When triggers stay collided
