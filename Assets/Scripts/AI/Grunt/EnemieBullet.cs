@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class EnemieBullet : MonoBehaviour
 {
@@ -17,9 +18,18 @@ public class EnemieBullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.tag == "Player"){
-			Destroy (c.gameObject);
-        }
+		if (c.tag == "Player") {
+			if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().PlayerHealth >= 1){
+				
+				GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameManager> ().DecreasePlayerHealth (10);
+			}
+
+			if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().PlayerHealth <= 0){
+				SceneManager.LoadScene ("GameOver");
+			}
+			Destroy (this.gameObject);
+		}
+
 		if (c.tag == "Level"){
 			Destroy (this.gameObject);
 		}
