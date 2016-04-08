@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ProjectileMovement : MonoBehaviour {
 	public float speed = 9;
-
+	[SerializeField] private Rigidbody2D coinPrefab;
 	[SerializeField] private Vector3 myDirection = Vector3.up;
 	private float time;
 
@@ -26,7 +26,10 @@ public class ProjectileMovement : MonoBehaviour {
             Destroy(gameObject);
         }
         if (c.gameObject.tag == "grunt") {
-			GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameManager> ().IncreasePlayerScore (100);
+			float rand = Random.Range(0,100);
+			if(rand > 50) {
+				Instantiate (coinPrefab, this.transform.position, Quaternion.identity);
+			}
             Destroy(c.gameObject);
             Destroy(gameObject);
         }
