@@ -15,26 +15,14 @@ public class EnemieBullet : MonoBehaviour
     {
         transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
     }
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D c)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().PlayerLives < 0)
-            {
-                if (GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().PlayerHealth < 0)
-                {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().PlayerHealth--;
-                }
-                else
-                {
-                    GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().PlayerLives--;
-                }
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().resetPlayer();
-            }
+        if (c.tag == "Player"){
+			Destroy (c.gameObject);
         }
+		if (c.tag == "Level"){
+			Destroy (this.gameObject);
+		}
     }
 
 
