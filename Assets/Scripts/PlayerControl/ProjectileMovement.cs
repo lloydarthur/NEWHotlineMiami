@@ -25,8 +25,8 @@ public class ProjectileMovement : MonoBehaviour {
         if (c.gameObject.tag == "Level") {
             Destroy(gameObject);
         }
-        if (c.gameObject.tag == "grunt")
-        {
+        if (c.gameObject.tag == "grunt") {
+			GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameManager> ().IncreasePlayerScore (100);
             Destroy(c.gameObject);
             Destroy(gameObject);
         }
