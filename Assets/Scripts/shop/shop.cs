@@ -5,6 +5,7 @@ using System.Collections;
 public class shop : MonoBehaviour {
 	public GameObject Gamemgn=null;
 	// enter the shop
+	public GameObject Cashier = null;
 	public Image EnterShop = null;
 	public Button YesButton = null;
 	public Button NoButton = null;
@@ -30,6 +31,17 @@ public class shop : MonoBehaviour {
 	bool HGABUY = false;
 	bool RABUY = false;
 	bool HPBUY = false;
+	bool asked = false;
+
+void OnTriggerEnter2D(Collider2D other)
+{
+	if (asked == false)
+	{
+		asked = true;
+		EnterTheShop();
+	}
+}
+
 	void intializeShopComponents() 
 	{
 		if (EnterShop == null) {
@@ -67,7 +79,8 @@ public class shop : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		//ExistTheShop ();
+		asked = false;
+		ExistTheShop ();
 		closeShop ();
 	}
 
@@ -89,6 +102,7 @@ public class shop : MonoBehaviour {
 
 	public void ExistTheShop()
 	{
+		asked = false;
 		EnterShop.enabled = false;
 		EnterShop_text.enabled = false;
 		YesButton.GetComponent<Button>().enabled = false;
@@ -131,6 +145,7 @@ public class shop : MonoBehaviour {
 
 	public void closeShop()
 	{
+		asked = false;
 		Shop.enabled = false;
 		BuyButton.GetComponent<Button>().enabled = false;
 		BuyButton.GetComponent<Image>().enabled = false;
@@ -156,9 +171,6 @@ public class shop : MonoBehaviour {
 		}
 
 	}
-
-
-
 
 	public  void healthpack()
 	{
