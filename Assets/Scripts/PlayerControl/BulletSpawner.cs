@@ -14,6 +14,10 @@ public class BulletSpawner: MonoBehaviour {
 	public bool HandGunisActive=false; 
 	public bool AssaultRifleisActive= true; 
 
+	public bool isShotGunAmmoEmpty= true;
+	public bool isHandGunActiveEmpty= true; 
+	public bool isRifleisActiveEmpty= true; 
+
 	[SerializeField] private GameObject projectilePrefab = null;
 	[SerializeField] private GameObject ShotGB = null;
 	[SerializeField] private GameObject SFXmng1 = null;
@@ -52,15 +56,15 @@ public class BulletSpawner: MonoBehaviour {
 			projectile.transform.rotation = this.gameObject.transform.rotation;
 		}*/
 		//HandGunShoot ();
-		if (ShotGunisActive == false && HandGunisActive == true&& AssaultRifleisActive== false)
+		if (ShotGunisActive == false && HandGunisActive == true&& AssaultRifleisActive== false&& isRifleisActiveEmpty == true)
 		{
 				HandGunShoot ();
 		}
-		if (ShotGunisActive == true && HandGunisActive == false && AssaultRifleisActive== false )
+		if (ShotGunisActive == true && HandGunisActive == false && AssaultRifleisActive== false&& isHandGunActiveEmpty== true )
 		{
 				ShotGunShoot ();
 		}
-		if (ShotGunisActive == false && HandGunisActive == false && AssaultRifleisActive== true)
+		if (ShotGunisActive == false && HandGunisActive == false && AssaultRifleisActive== true&& isShotGunAmmoEmpty == true)
 		{
 				RifeShoot ();
 		}
@@ -97,7 +101,9 @@ public class BulletSpawner: MonoBehaviour {
 			}
 
 			Gamemgn.GetComponent<GameManager> ().DecreasePlayerAmmon ();
+			noAmmo ();
 		}
+
 	}
 	public void RifeShoot ()
 	{
@@ -123,7 +129,9 @@ public class BulletSpawner: MonoBehaviour {
 				Debug.Log ("just played PlayRifeclip3"); 
 			}
 			Gamemgn.GetComponent<GameManager> ().DecreasePlayerAmmon ();
+				noAmmo ();
 		}
+	
 	}
 
 	public void ShotGunShoot ()
@@ -161,6 +169,54 @@ public class BulletSpawner: MonoBehaviour {
 				Debug.Log ("just played PlayShotGunclip3"); 
 			}
 			Gamemgn.GetComponent<GameManager> ().DecreasePlayerAmmon ();
+			noAmmo ();
 		}
 	}
+
+
+
+
+	void noAmmo ()
+
+	{
+		if (Gamemgn.GetComponent<GameManager> ().RifeAmmon >= 0) {
+			isRifleisActiveEmpty = true;
+
+		} else
+		{
+			Gamemgn.GetComponent<GameManager> ().RifeAmmon = 0;
+			isRifleisActiveEmpty = false; 
+		}
+	
+		if (Gamemgn.GetComponent<GameManager> ().HandGunAmmon>= 0) 
+		{
+			isHandGunActiveEmpty= true; 
+		} else
+		{
+			isHandGunActiveEmpty= false;
+			Gamemgn.GetComponent<GameManager> ().HandGunAmmon= 0;
+
+		}
+
+
+		if (Gamemgn.GetComponent<GameManager> ().ShotGunAmmon>= 0) 
+		{
+			isShotGunAmmoEmpty= true; 
+		} else
+		{
+			
+			isShotGunAmmoEmpty= false;
+			Gamemgn.GetComponent<GameManager> ().ShotGunAmmon= 0;
+		}
+
+	
+	}
+
+
+
+
+
+
+
 }
+
