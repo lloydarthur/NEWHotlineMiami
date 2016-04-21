@@ -38,13 +38,18 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scene\BulletAbsorber.cs" />
+     <Compile Include="Assets\Scene\Fading.cs" />
+     <Compile Include="Assets\Scene\PlayMainMenu.cs" />
+     <Compile Include="Assets\Scene\SceneLoader.cs" />
+     <Compile Include="Assets\Scene\customCursor.cs" />
      <Compile Include="Assets\Scripts\AI\Colderscript.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\EnemieBullet.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\GruntGun.cs" />
@@ -60,24 +65,21 @@
      <Compile Include="Assets\Scripts\PlayerControl\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\ProjectileMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\SmoothCamera2D.cs" />
-     <Compile Include="Assets\Scripts\Scene\BulletAbsorber.cs" />
-     <Compile Include="Assets\Scripts\Scene\Fading.cs" />
-     <Compile Include="Assets\Scripts\Scene\PlayMainMenu.cs" />
-     <Compile Include="Assets\Scripts\Scene\SceneLoader.cs" />
-     <Compile Include="Assets\Scripts\Scene\customCursor.cs" />
      <Compile Include="Assets\Scripts\Singletons\AudioManager2.cs" />
      <Compile Include="Assets\Scripts\Singletons\GameManager.cs" />
      <Compile Include="Assets\Scripts\Singletons\MusicManager.cs" />
      <Compile Include="Assets\Scripts\Singletons\SFXmng.cs" />
+     <Compile Include="Assets\Scripts\UI\Letter.cs" />
+     <Compile Include="Assets\Scripts\UI\Ok.cs" />
      <Compile Include="Assets\Scripts\Weapons\Handgun.cs" />
      <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />
      <Compile Include="Assets\Scripts\Weapons\Shotgun.cs" />
      <Compile Include="Assets\Scripts\shop\shop.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -66,6 +66,11 @@ public class PlayerCollision : MonoBehaviour {
 		player.transform.position = new Vector3 (-182, -80);
 		camera.transform.position = new Vector3 (-182, -80, -10);
 	}
+	IEnumerator ShopTrigger() {
+		float fadeTime = GameObject.Find("Game_Manager").GetComponent<Fading>().BeginFade(1);
+		yield return new WaitForSeconds(fadeTime);
+		SceneManager.LoadScene ("Shop");
+	}
 
 
 	//Creates gun prefab on the ground after the player switches their weapon
@@ -116,11 +121,12 @@ public class PlayerCollision : MonoBehaviour {
 			}
 			if (c.tag == "Level3-2BackTrigger") {
 				StartCoroutine (Level3_2BackTrigger());
-
 			}
 			if (c.tag == "Level3-3BackTrigger") {
 				StartCoroutine (Level3_3BackTrigger());
-
+			}
+			if (c.tag == "ShopTrigger") {
+				StartCoroutine (ShopTrigger());
 			}
 		}
 
