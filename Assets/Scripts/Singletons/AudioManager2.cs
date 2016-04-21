@@ -27,6 +27,9 @@ public class AudioManager2 : MonoBehaviour
 	[SerializeField] private AudioClip HitSound2 = null;
 	[SerializeField] private AudioClip HitSound3 = null;
 
+	[SerializeField] private AudioClip CoinSound1 = null;
+	[SerializeField] private AudioClip CoinSound2 = null;
+
 	private List<AudioSource> sources = new List<AudioSource>();
 
 
@@ -74,6 +77,8 @@ public class AudioManager2 : MonoBehaviour
 	public void PlayHitSound1(){ PlaySound(this.HitSound1); }
 	public void PlayHitSound2(){ PlaySound(this.HitSound2); }
 	public void PlayHitSound3(){ PlaySound(this.HitSound3); }
+	public void PlayCoinSound1(){ PlaySound(this.CoinSound1); }
+	public void PlayCoinSound2(){ PlaySound(this.CoinSound2); }
 
 	private void PlaySound (AudioClip clip)
 	{
