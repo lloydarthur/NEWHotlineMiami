@@ -8,7 +8,7 @@ public class BulletSpawner: MonoBehaviour {
 	//public int HandGunAmmon;
 	//public int RifeAmmon;
 
-	public GameObject Gamemgn=null;
+	public GameManager Gamemgn=null;
 
 	public bool ShotGunisActive=false;
 	public bool HandGunisActive=false; 
@@ -43,11 +43,23 @@ public class BulletSpawner: MonoBehaviour {
 
 	void Start () 
 	{
-
+		//if(Gamemgn==null) {
+			///Gamemgn = GameManager.FindObjectOfType();   //GameManager.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+		// Gamemgn  = (GameManager) FindObjectOfType(typeof(GameManager));
+		//} else {
+		//	Debug.Log (" misss game manger in  bulletSpawer");
+		//}
 	}
 	// Update is called once per frame
 	void Update () 
 	{
+
+		if (Gamemgn == null) {
+			///Gamemgn = GameManager.FindObjectOfType();   //GameManager.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+			Gamemgn = (GameManager)FindObjectOfType (typeof(GameManager));
+		} else {
+			Debug.Log (" misss game manger in  bulletSpawer");
+		}
 		/*if (Input.GetMouseButtonDown(1))
 		{
 			//Spawn the projectile, setting its position and orientation to that of the spawner game object's transform.
