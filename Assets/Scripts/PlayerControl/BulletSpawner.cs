@@ -70,6 +70,7 @@ public class BulletSpawner: MonoBehaviour {
 		//HandGunShoot ();
 		if (ShotGunisActive == false && HandGunisActive == true&& AssaultRifleisActive== false&& isRifleisActiveEmpty == true)
 		{
+            
 				HandGunShoot ();
 		}
 		if (ShotGunisActive == true && HandGunisActive == false && AssaultRifleisActive== false&& isHandGunActiveEmpty== true )

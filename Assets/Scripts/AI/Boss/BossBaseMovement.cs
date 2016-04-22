@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BossBaseMovement : MonoBehaviour {
  
@@ -30,13 +31,17 @@ public class BossBaseMovement : MonoBehaviour {
     void FixedUpdate()
     {
         Gen_movment();
-        if(bossHealth<10)
+        if(bossHealth<10&&bossHealth>1)
         {
             StartCoroutine(takeCover());
         }
-        else
+        else if(bossHealth>10)
         {
             isDieing = false;
+        }
+        else if(bossHealth<=0)
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 	void Gen_movment()
@@ -89,6 +94,7 @@ public class BossBaseMovement : MonoBehaviour {
             if(bossHealth<=0)
             {
                 Destroy(this.gameObject);
+               
             }
         }
     }
