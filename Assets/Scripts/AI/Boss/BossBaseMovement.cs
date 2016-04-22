@@ -81,5 +81,15 @@ public class BossBaseMovement : MonoBehaviour {
             bossHealth += .1f;
         }
     }
-    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag=="Pbullet")
+        {
+            bossHealth -= 1;
+            if(bossHealth<=0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 }
