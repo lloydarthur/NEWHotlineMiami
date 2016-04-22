@@ -53,13 +53,20 @@ public class GameManager : MonoBehaviour {
 	{
 		textUpdater();
 		if(PlayerHealth<=0) {
-			SceneManager.LoadScene("GameOver");
+			StartCoroutine (TransitionGameOver());
 		}
 		//intializeComponents ();
 		emptytest(); 
 		filltest (); 
 	}
 
+	IEnumerator TransitionGameOver() {
+		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
+		yield return new WaitForSeconds (fadeTime);
+		Debug.Log ("fwefasfewrfawfawfew");
+		SceneManager.LoadScene("GameOver");
+	}
+	
 	void intializeComponents() {
 		if(Player == null) {
 			Debug.Log (" miss Player in  GameManager");
@@ -203,6 +210,13 @@ public class GameManager : MonoBehaviour {
 	public void IncreasePlayerScore (int x) {
 		PlayerScore += x;
 		Score_text.text = "Score" + PlayerScore;
+		PlayerPrefs.SetInt ("s", PlayerScore);
+		if(!PlayerPrefs.HasKey("hs")){
+			PlayerPrefs.SetInt ("hs", 0);
+		}
+		if(PlayerScore > PlayerPrefs.GetInt("hs")) {
+			PlayerPrefs.SetInt ("hs", PlayerScore);
+		}
 	}
 
 
