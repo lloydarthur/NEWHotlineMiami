@@ -19,6 +19,7 @@ public Text ButtonName;
 	public void click()
 	{
 		//SET PLAYER VARIABLE HERE
+		Debug.Log("ewfqwef");
 		SceneManager.LoadScene("GameOver");
 	}
 }
