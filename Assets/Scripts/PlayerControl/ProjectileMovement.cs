@@ -41,7 +41,11 @@ public class ProjectileMovement : MonoBehaviour {
 			if(rand >= 67 && rand <= 100) {
 				audio.PlayHitSound3 ();
 			}
+             if (c.gameObject.tag == "Boss") {
 
+                 GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBaseMovement>().bossHealth -= 10;
+			    
+			}
             Destroy(c.gameObject);
             Destroy(gameObject);
         }

@@ -114,7 +114,7 @@ public class ScoutMovement : MonoBehaviour {
                 float Zref=this.transform.eulerAngles.z-angleOffset;//offset 
                 _Angle=Mathf.MoveTowardsAngle(transform.eulerAngles.z,Zref,phase);
                 transform.eulerAngles = new Vector3(0, 0,_Angle);//out put
-                Debug.Log(Mathf.RoundToInt(this.transform.rotation.z*(180f/Mathf.PI)));
+               // Debug.Log(Mathf.RoundToInt(this.transform.rotation.z*(180f/Mathf.PI)));
                 
                 #region oldMethods
                 //        From = new Vector3(0f, 0f,_Angle+z);

@@ -29,10 +29,13 @@ public class EnemieBullet : MonoBehaviour
 			}
 			Destroy (this.gameObject);
 		}
-
-		if (c.tag == "Level"){
-			Destroy (this.gameObject);
-		}
+    }
+    void OnCollisionEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag=="Level")
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 
