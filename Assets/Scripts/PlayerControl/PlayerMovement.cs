@@ -74,6 +74,14 @@ public class PlayerMovement : MonoBehaviour {
         {
             SceneManager.LoadScene("Level3-2-3-4");
         }
+        if (Input.GetKey(KeyCode.F6))
+        {
+            SceneManager.LoadScene("Shop");
+        }
+        if (Input.GetKey(KeyCode.F7))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
 	/*	Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 
 		RaycastHit hit = new RaycastHit ();
