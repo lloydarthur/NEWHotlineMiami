@@ -46,63 +46,96 @@ public class GameManager : MonoBehaviour {
 		RifeAmmon = playerStartammo [2];
 		PlayerHealth = 100;
 		healthbarfilerGui.fillAmount = 1;
+
 	}
 
 	void FixedUpdate()
 	{
 		textUpdater();
 		if(PlayerHealth<=0) {
-			SceneManager.LoadScene("GameOver");
+			StartCoroutine (TransitionGameOver());
 		}
+		//intializeComponents ();
+		emptytest(); 
+		filltest (); 
 	}
 
+	IEnumerator TransitionGameOver() {
+		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
+		yield return new WaitForSeconds (fadeTime);
+		Debug.Log ("fwefasfewrfawfawfew");
+		SceneManager.LoadScene("GameOver");
+	}
+	
 	void intializeComponents() {
 		if(Player == null) {
+			Debug.Log (" miss Player in  GameManager");
 			Player = GameObject.FindGameObjectWithTag("Player");
 		}else {
-
+			
+			Debug.Log ("  player in  GameManager");
 		}
 
 		if(Score_text == null) {
+			Debug.Log (" miss ST in  GameManager");
 			Score_text = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
 		} else {
-
+			Debug.Log (" Score in  GameManager");
+		}
+		if(Ammo_text == null) {
+			Debug.Log (" miss AT in  GameManager");
+			Ammo_text = GameObject.FindGameObjectWithTag("Ammo").GetComponent<Text>();
+		} else {
+			Debug.Log (" Ammo in  GameManager");
 		}
 
 
 		if(CurenntWeapon_text==null) {
+			Debug.Log (" miss CW in  GameManager");
 			CurenntWeapon_text = GameObject.FindGameObjectWithTag("CurenntWeapon").GetComponent<Text>();
 		} else {
-
+			Debug.Log ("CurenntWeapon in  GameManager");
 		}
 
 		if(healthbar_text==null) {
-			healthbar_text = GameObject.FindGameObjectWithTag("HealthBarText").GetComponent<Text>();
+			Debug.Log (" miss HT in  GameManager");
+			healthbar_text = GameObject.FindGameObjectWithTag("Health").GetComponent<Text>();
 		} else {
-
+			Debug.Log (" Healthbar in  GameManager");
 		}
 		if(ShotGunGui==null) {
+			Debug.Log (" miss SGG in  GameManager");
 			ShotGunGui = GameObject.FindGameObjectWithTag("ShotGunGui").GetComponent<Image>();
 		} else {
-
+			Debug.Log (" ShotGunGui in  GameManager");
 		}
 
 		if(HandGunGui==null) {
-			HandGunGui= GameObject.FindGameObjectWithTag("HandGunGui").GetComponent<Image>();
+			Debug.Log (" miss HGG in  GameManager");
+			HandGunGui= GameObject.FindGameObjectWithTag("HandgunGui").GetComponent<Image>();
 		} else {
-
+			Debug.Log (" handGunGui in  GameManager");
 		}
 
 		if(RifeGui==null) {
-			RifeGui = GameObject.FindGameObjectWithTag("RifeGui").GetComponent<Image>();
+			Debug.Log (" miss RG in  GameManager");
+			RifeGui = GameObject.FindGameObjectWithTag("RifleGUi").GetComponent<Image>();
 		} else {
-
+			Debug.Log (" RiferGui in  GameManager");
 		}
 
-		if(healthbarfilerGui==null) {
-			healthbarfilerGui = GameObject.FindGameObjectWithTag("healthbarfiler").GetComponent<Image>();
+		if(BulletSpawerConponet==null) {
+			Debug.Log (" miss BSC in  GameManager");
+			BulletSpawerConponet = GameObject.FindGameObjectWithTag ("BulletSpawer"); BulletSpawerConponet.GetComponent<BulletSpawner>();
 		} else {
+			Debug.Log (" RiferGui in  GameManager");
+		}
 
+
+		if(healthbarfilerGui==null) {
+			healthbarfilerGui = GameObject.FindGameObjectWithTag("Healthbarfiler").GetComponent<Image>();
+		} else {
+			Debug.Log (" healthbarfilerGui in  GameManager");
 		}
 
 
@@ -110,7 +143,7 @@ public class GameManager : MonoBehaviour {
 
 	void textUpdater() {
 
-		Score_text.text = "" + PlayerScore;
+		Score_text.text = "Score: " + PlayerScore;
 		healthbar_text.text =   PlayerHealth + "/100"  ;
 
 		if (BulletSpawerConponet.GetComponent<BulletSpawner>().HandGunisActive== true){
@@ -176,6 +209,50 @@ public class GameManager : MonoBehaviour {
 
 	public void IncreasePlayerScore (int x) {
 		PlayerScore += x;
-		Score_text.text = "" + PlayerScore;
+		Score_text.text = "Score" + PlayerScore;
+		PlayerPrefs.SetInt ("s", PlayerScore);
+		if(!PlayerPrefs.HasKey("hs")){
+			PlayerPrefs.SetInt ("hs", 0);
+		}
+		if(PlayerScore > PlayerPrefs.GetInt("hs")) {
+			PlayerPrefs.SetInt ("hs", PlayerScore);
+		}
+	}
+
+
+
+	void emptytest() 
+	{
+		if (Input.GetKey(KeyCode.L))
+		{
+		Player = null;
+		Score_text = null;
+		Ammo_text = null;
+		CurenntWeapon_text= null;
+		HandGunGui = null;
+		ShotGunGui= null;
+		RifeGui = null;
+		healthbarfilerGui = null;
+		BulletSpawerConponet = null;
+		healthbar_text = null;
+			filltest (); 
+		}
+	}
+	void filltest() 
+	{
+		if (Input.GetKey(KeyCode.J))
+		{
+			Debug.Log ("nooooooooooooope");
+			Player = GameObject.FindGameObjectWithTag("Player");
+			Score_text = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
+			Ammo_text = GameObject.FindGameObjectWithTag("Ammo").GetComponent<Text>();
+			CurenntWeapon_text = GameObject.FindGameObjectWithTag("CurenntWeapon").GetComponent<Text>();
+			healthbar_text = GameObject.FindGameObjectWithTag("Health").GetComponent<Text>();
+			HandGunGui= GameObject.FindGameObjectWithTag("HandgunGui").GetComponent<Image>();
+			ShotGunGui = GameObject.FindGameObjectWithTag("ShotGunGui").GetComponent<Image>();
+			RifeGui = GameObject.FindGameObjectWithTag("RifleGUi").GetComponent<Image>();
+			BulletSpawerConponet = GameObject.FindGameObjectWithTag ("BulletSpawer");
+			healthbarfilerGui = GameObject.FindGameObjectWithTag("Healthbarfiler").GetComponent<Image>();
+		}
 	}
 }

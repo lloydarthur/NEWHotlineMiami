@@ -45,6 +45,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scene\BulletAbsorber.cs" />
+     <Compile Include="Assets\Scene\Fading.cs" />
+     <Compile Include="Assets\Scene\PlayMainMenu.cs" />
+     <Compile Include="Assets\Scene\SceneLoader.cs" />
+     <Compile Include="Assets\Scene\customCursor.cs" />
+     <Compile Include="Assets\Scripts\AI\Boss\BossBaseMovement.cs" />
+     <Compile Include="Assets\Scripts\AI\Boss\BossGun.cs" />
+     <Compile Include="Assets\Scripts\AI\Boss\Bosssprite.cs" />
+     <Compile Include="Assets\Scripts\AI\Boss\PlayerTrigger.cs" />
      <Compile Include="Assets\Scripts\AI\Colderscript.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\EnemieBullet.cs" />
      <Compile Include="Assets\Scripts\AI\Grunt\GruntGun.cs" />
@@ -60,15 +69,14 @@
      <Compile Include="Assets\Scripts\PlayerControl\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\ProjectileMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerControl\SmoothCamera2D.cs" />
-     <Compile Include="Assets\Scripts\Scene\BulletAbsorber.cs" />
-     <Compile Include="Assets\Scripts\Scene\Fading.cs" />
-     <Compile Include="Assets\Scripts\Scene\PlayMainMenu.cs" />
-     <Compile Include="Assets\Scripts\Scene\SceneLoader.cs" />
-     <Compile Include="Assets\Scripts\Scene\customCursor.cs" />
      <Compile Include="Assets\Scripts\Singletons\AudioManager2.cs" />
      <Compile Include="Assets\Scripts\Singletons\GameManager.cs" />
      <Compile Include="Assets\Scripts\Singletons\MusicManager.cs" />
      <Compile Include="Assets\Scripts\Singletons\SFXmng.cs" />
+     <Compile Include="Assets\Scripts\UI\Highscores.cs" />
+     <Compile Include="Assets\Scripts\UI\Letter.cs" />
+     <Compile Include="Assets\Scripts\UI\Ok.cs" />
+     <Compile Include="Assets\Scripts\UI\uii.cs" />
      <Compile Include="Assets\Scripts\Weapons\Handgun.cs" />
      <Compile Include="Assets\Scripts\Weapons\Rifle.cs" />
      <Compile Include="Assets\Scripts\Weapons\Shotgun.cs" />

@@ -8,11 +8,15 @@ public class BulletSpawner: MonoBehaviour {
 	//public int HandGunAmmon;
 	//public int RifeAmmon;
 
-	public GameObject Gamemgn=null;
+	public GameManager Gamemgn=null;
 
 	public bool ShotGunisActive=false;
 	public bool HandGunisActive=false; 
 	public bool AssaultRifleisActive= true; 
+
+	public bool isShotGunAmmoEmpty= true;
+	public bool isHandGunActiveEmpty= true; 
+	public bool isRifleisActiveEmpty= true; 
 
 	[SerializeField] private GameObject projectilePrefab = null;
 	[SerializeField] private GameObject ShotGB = null;
@@ -39,11 +43,23 @@ public class BulletSpawner: MonoBehaviour {
 
 	void Start () 
 	{
-
+		//if(Gamemgn==null) {
+			///Gamemgn = GameManager.FindObjectOfType();   //GameManager.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+		// Gamemgn  = (GameManager) FindObjectOfType(typeof(GameManager));
+		//} else {
+		//	Debug.Log (" misss game manger in  bulletSpawer");
+		//}
 	}
 	// Update is called once per frame
 	void Update () 
 	{
+
+		if (Gamemgn == null) {
+			///Gamemgn = GameManager.FindObjectOfType();   //GameManager.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+			Gamemgn = (GameManager)FindObjectOfType (typeof(GameManager));
+		} else {
+			Debug.Log (" misss game manger in  bulletSpawer");
+		}
 		/*if (Input.GetMouseButtonDown(1))
 		{
 			//Spawn the projectile, setting its position and orientation to that of the spawner game object's transform.
@@ -52,15 +68,16 @@ public class BulletSpawner: MonoBehaviour {
 			projectile.transform.rotation = this.gameObject.transform.rotation;
 		}*/
 		//HandGunShoot ();
-		if (ShotGunisActive == false && HandGunisActive == true&& AssaultRifleisActive== false)
+		if (ShotGunisActive == false && HandGunisActive == true&& AssaultRifleisActive== false&& isRifleisActiveEmpty == true)
 		{
+            
 				HandGunShoot ();
 		}
-		if (ShotGunisActive == true && HandGunisActive == false && AssaultRifleisActive== false )
+		if (ShotGunisActive == true && HandGunisActive == false && AssaultRifleisActive== false&& isHandGunActiveEmpty== true )
 		{
 				ShotGunShoot ();
 		}
-		if (ShotGunisActive == false && HandGunisActive == false && AssaultRifleisActive== true)
+		if (ShotGunisActive == false && HandGunisActive == false && AssaultRifleisActive== true&& isShotGunAmmoEmpty == true)
 		{
 				RifeShoot ();
 		}
@@ -97,7 +114,9 @@ public class BulletSpawner: MonoBehaviour {
 			}
 
 			Gamemgn.GetComponent<GameManager> ().DecreasePlayerAmmon ();
+			noAmmo ();
 		}
+
 	}
 	public void RifeShoot ()
 	{
@@ -123,7 +142,9 @@ public class BulletSpawner: MonoBehaviour {
 				Debug.Log ("just played PlayRifeclip3"); 
 			}
 			Gamemgn.GetComponent<GameManager> ().DecreasePlayerAmmon ();
+				noAmmo ();
 		}
+	
 	}
 
 	public void ShotGunShoot ()
@@ -161,6 +182,54 @@ public class BulletSpawner: MonoBehaviour {
 				Debug.Log ("just played PlayShotGunclip3"); 
 			}
 			Gamemgn.GetComponent<GameManager> ().DecreasePlayerAmmon ();
+			noAmmo ();
 		}
 	}
+
+
+
+
+	void noAmmo ()
+
+	{
+		if (Gamemgn.GetComponent<GameManager> ().RifeAmmon >= 0) {
+			isRifleisActiveEmpty = true;
+
+		} else
+		{
+			Gamemgn.GetComponent<GameManager> ().RifeAmmon = 0;
+			isRifleisActiveEmpty = false; 
+		}
+	
+		if (Gamemgn.GetComponent<GameManager> ().HandGunAmmon>= 0) 
+		{
+			isHandGunActiveEmpty= true; 
+		} else
+		{
+			isHandGunActiveEmpty= false;
+			Gamemgn.GetComponent<GameManager> ().HandGunAmmon= 0;
+
+		}
+
+
+		if (Gamemgn.GetComponent<GameManager> ().ShotGunAmmon>= 0) 
+		{
+			isShotGunAmmoEmpty= true; 
+		} else
+		{
+			
+			isShotGunAmmoEmpty= false;
+			Gamemgn.GetComponent<GameManager> ().ShotGunAmmon= 0;
+		}
+
+	
+	}
+
+
+
+
+
+
+
 }
+

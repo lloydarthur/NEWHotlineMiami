@@ -42,8 +42,8 @@ public class PlayerCollision : MonoBehaviour {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
 		yield return new WaitForSeconds (fadeTime);
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
-		player.transform.position = new Vector3 (-143, -25);
-		camera.transform.position = new Vector3 (-143, -25, -10);
+		player.transform.position = new Vector3 (-146, -29);
+		camera.transform.position = new Vector3 (-146, -29, -10);
 	}
 	IEnumerator Level3_3EndTrigger() {
 		float fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().BeginFade (1);
@@ -65,6 +65,11 @@ public class PlayerCollision : MonoBehaviour {
 		fadeTime = GameObject.Find ("Game_Manager").GetComponent<Fading> ().EndFade();
 		player.transform.position = new Vector3 (-182, -80);
 		camera.transform.position = new Vector3 (-182, -80, -10);
+	}
+	IEnumerator ShopTrigger() {
+		float fadeTime = GameObject.Find("Game_Manager").GetComponent<Fading>().BeginFade(1);
+		yield return new WaitForSeconds(fadeTime);
+		SceneManager.LoadScene ("Shop");
 	}
 
 
@@ -116,11 +121,12 @@ public class PlayerCollision : MonoBehaviour {
 			}
 			if (c.tag == "Level3-2BackTrigger") {
 				StartCoroutine (Level3_2BackTrigger());
-
 			}
 			if (c.tag == "Level3-3BackTrigger") {
 				StartCoroutine (Level3_3BackTrigger());
-
+			}
+			if (c.tag == "ShopTrigger") {
+				StartCoroutine (ShopTrigger());
 			}
 		}
 
